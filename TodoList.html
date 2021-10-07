@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="todocss.css">
+</head>
+
+<body>
+    <h1>To Do List</h1>
+        <div id="app">
+            <div class="container">
+                <div class="row">
+                    <p class="jumbotron">What would you want to do ? <br>
+                        <input type="text" v-model="writeTask"/><br><br>
+                        <button v-on:click="plannification(writeTask)"> ✔ </button>
+                        <button v-on:click="remove(writeTask)"> ✘ </button>
+                        <button v-on:click="removeAll(writeTask)"> Refresh </button>
+                    </p>
+                </div>
+                
+            <h1 class="display-4" v-if="newTasks.length > 0">Tasks : </h1>
+                <ul>
+                    <li v-for="newTask in newTasks">{{ newTask }}</li>
+                </ul>
+                
+            </div>
+
+    </div>
+    <script>
+    
+    var app = new Vue ({
+        el: "#app",
+        data: {
+            newTasks: []
+        },
+        methods:{
+            plannification: function(task){
+                this.newTasks.push(task);
+            },
+            remove: function(task){
+                this.newTasks.splice(this.task, 1)
+            },
+            removeAll: function(task){
+                this.newTasks.splice(task)
+            }
+        }
+    })
+    </script>
+</body>
+</html>
